@@ -1,0 +1,12 @@
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    background: red;
+
+    &__h2{
+        font-weight: 400;
+        font-size: 120%;
+    }
+}

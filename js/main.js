@@ -1,9 +1,9 @@
 class App{
-    Header;
-    Footer;
-    LeftPanel;
-    RightPanel;
-    GetData;
+    header;
+    footer;
+    leftpanel;
+    rightpanel;
+    getdata;
 }
 
 class Header{

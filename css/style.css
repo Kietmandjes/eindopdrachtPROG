@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: green;
+}
+.header__img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  background: red;
+}
+.footer__h2 {
+  font-weight: 400;
+  font-size: 120%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  padding: 2rem;
+}
+
+/*# sourceMappingURL=style.css.map */

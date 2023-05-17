@@ -4,11 +4,11 @@
     justify-content: center;
     gap: 2rem;
     padding: 2rem;
-    background-color: green;
+    padding-top: 2rem;
+    background: #F9B208;
 
-    &__img{
-        height: 10rem;
-        width: 10rem;
-        border-radius: 50%;
+    &__logo{
+        font-size: 350%;
+        color: #FC5404;
     }
 }

@@ -1,5 +1,12 @@
 body{
-    min-height: 100vh;
-    font-family: 'Open Sans', sans-serif;
+    max-height: 100vh;
     padding: 2rem;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F98404;
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    background: #F9B208;
 }

@@ -2,6 +2,7 @@
     width: 40%;
     background: #F9B208;
     padding: 1rem;
+    padding-right: 2rem;
     
 
     &__img{
@@ -10,14 +11,14 @@
         height: 10rem;
     }
 
-    &__button--audio{
-        background: #FC5404;
-        color: #FFFFFF;
-        border: none;
+    &__audio{
         border-radius: 5px;
-        width: 40%;
         padding: 0.3rem;
-        font-size: 100%;
+
+        &::-webkit-media-controls-panel{
+            background: #FC5404;
+            color: #000000;
+        }
 
         &:hover{
             cursor: pointer;

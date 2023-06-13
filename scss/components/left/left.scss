@@ -4,8 +4,9 @@
     padding: 1rem;
 
     &__img{
-        width: 30%;
-        scale: 1/1;
+        width: 10.8rem;
+        height: 10.8rem;
         padding: 1rem;
+        object-fit: cover;
     }
 }

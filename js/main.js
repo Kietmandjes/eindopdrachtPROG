@@ -52,14 +52,19 @@ class Main{
     data =[];
     left;
     right;
+
     constructor(placeToRenderMain,data){
         this.placeToRenderMain = document.getElementsByTagName(placeToRenderMain)[0];
         this.data = data;
-        console.log(this.data)
         this.main = document.createElement("main");
         this.main.classList = ("main");
-        this.left = new Left(this.main,data)
-        this.left.render()
+        this.right = new Right(this.main,this.data);
+
+        this.left = new Left(this.main,this.data,this)
+        this.left.render();
+        this.right.render();
+        this.right.makeRightSection(0)
+
     }
 
     render = ()=> {
@@ -73,7 +78,7 @@ class Footer{
     placeToRenderFooter;
 
     constructor(placeToRenderFooter){
-        this.placeToRenderHeader = document.getElementsByTagName(placeToRenderFooter)[0];
+        this.placeToRenderFooter = document.getElementsByTagName(placeToRenderFooter)[0];
 
         this.footer = document.createElement("footer");
         this.footer.classList = "footer";
@@ -93,8 +98,10 @@ class Left{
     sectionLeft;
     img;
     placeToRenderLeft;
-
-    constructor(placeToRenderLeft,data){
+    sectionRight
+    constructor(placeToRenderLeft,data,main){
+        this.sectionRight = main.right
+        
         this.placeToRenderLeft = placeToRenderLeft;
         this.data = data;
         this.sectionLeft = document.createElement("section");
@@ -103,31 +110,76 @@ class Left{
         for (let i = 0; i < 4; i++) {
             let randomNumber = Math.floor(Math.random() * 7)
             this.img = document.createElement("img");
+            this.img.onclick = () =>{
+                console.log(this.sectionRight)
+                this.sectionRight.makeRightSection(randomNumber)
+               
+            }
 
             this.sectionLeft.appendChild(this.img)
             this.img.src = data[randomNumber].img
             this.img.classList = "section__left__img";
-            console.log(data[randomNumber])
-
-        }
+        }       
         
     }
 
     render() {
         this.placeToRenderLeft.appendChild(this.sectionLeft);
-       
     }
 }
 
 class Right{
-    
+    sectionRight;
+    img;
+    placeToRenderRight;
+    data = [];
+
+    constructor(placeToRenderRight, data){
+        this.data = data
+        this.placeToRenderRight = placeToRenderRight;
+
+        this.sectionRight = document.createElement("section");
+        this.sectionRight.classList = "section__right";
+
+        this.img = document.createElement("img");
+        this.img.classList = "section__right__img";
+
+        this.p = document.createElement("p");
+        this.p.classList = "section__right__p";
+
+        this.buttonWrapper = document.createElement("div");
+        this.buttonWrapper.classList = "buttonWrapper";
+
+        this.audio = document.createElement("audio");
+        this.audio.classList = "section__right__audio";
+        this.audio.controls = true;        
+
+        this.source = document.createElement("a");
+        this.source.classList = "section__right__button--source"; 
+        this.source.innerText = "Source >";
+        
+    }
+
+    makeRightSection =(nummer) =>{
+
+        this.img.src = this.data[nummer].img;
+        this.p.innerText = this.data[nummer].summary;
+        this.audio.src = this.data[nummer].audio;
+        this.source.href = this.data[nummer].url;
+
+    }
+
+
+    render() {
+        this.placeToRenderRight.appendChild(this.sectionRight);
+        this.sectionRight.appendChild(this.img);
+        this.sectionRight.appendChild(this.p);
+        this.sectionRight.appendChild(this.buttonWrapper);
+        this.buttonWrapper.appendChild(this.audio);
+        this.buttonWrapper.appendChild(this.source);
+
+    }
 }
-
-class GetData{
-
-}
-
-
 
 class DetailCard{
 
@@ -135,24 +187,27 @@ class DetailCard{
 
 class App{
     header;
-    footer;
     main;
-    leftpanel;
-    rightpanel;
+    left;
+    right;
+    footer;
     getdata;
     api;
 
     constructor(){
-        
+        this.header = new Header("body");
+        this.header.render();
 
         this.api = new API("./json/data.json");
-        this.api
-            .GetData().then((data) => {
+        this.api.GetData().then((data) => {
+            this.main = new Main("body",data.episodes)
+            this.main.render()
+            this.footer = new Footer("body");
+            this.footer.render();   
+        })
 
-                this.main = new Main("body",data.episodes)
-                this.main.render()
-            });
     }
+
 }
 
 const app = new App();

@@ -8,5 +8,9 @@
         height: 10.8rem;
         padding: 1rem;
         object-fit: cover;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 }
